@@ -235,6 +235,8 @@ void get_root(int fd)
 void get_d20(int fd)
 {
   // !!!! IMPLEMENT ME
+  // srand(time(NULL) + getpid());
+  // sprintf(response_body, %d, ((rand() % 20) + 1));
   char response_body[1024];
   sprintf(response_body, "%d", rand() % 20);
   send_response(fd, "HTTP/1.1 200 OK", "text/plain", response_body);
@@ -246,6 +248,8 @@ void get_d20(int fd)
 void get_date(int fd)
 {
   // !!!! IMPLEMENT ME
+  // time_t = time(NULL);
+  // struct tm *gtime = gmtime(&t1);
   char response_body[1024];
   time_t rawtime;
   struct tm ts;
@@ -263,7 +267,32 @@ void get_date(int fd)
 void post_save(int fd, char *body)
 {
   // !!!! IMPLEMENT ME
+  /*
+  int file_fd = open("data.txt", O_CREAT|O_WRONLY, 0644);
+  char *status;
+  // FILE *file_fd = fopen("data.txt", "ab+");
 
+  if (file_fd > 0) {
+    //initialize a file lock
+    flock(file_fd, LOCK_EX);
+
+    write(file_fd, body, strlen(body));
+
+    flock(file_fd, LOCK_UN);
+
+    close(file_fd);
+
+    status = "ok";
+  } else {
+    status = "fail";
+  }
+
+  char response_body[128];
+
+  sprintf(response_body, "{\"status\": \"%s\"}", status);
+
+  send_response(fd, "HTTP/1.1 200 OK", "application/json", response_body);
+  */
   // Save the body and send a response
 }
 
@@ -276,6 +305,20 @@ void post_save(int fd, char *body)
 char *find_end_of_header(char *header)
 {
   // !!!! IMPLEMENT ME
+  /*
+  
+  char *p;
+
+  p = strstr(header, "\n\n");
+  if (p != NULL) return p;
+
+  p = strstr(header, "\r\n\r\n");
+  if (p != NULL) return p;
+
+  p = strstr(header, "\r\r");
+  return p
+
+  */
 }
 
 /**
